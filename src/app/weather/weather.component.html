@@ -1,0 +1,76 @@
+<!-- Navbar Section -->
+<div class="container-fluid navbar-section">
+  <nav class="navbar navbar-expand-lg navbar-light w-100">
+    <div class="d-flex align-items-center">
+      <i class="fa-solid fa-cloud-bolt fa-2xl me-2" style="color: #74C0FC;"></i>
+      <a class="navbar-brand" href="#">WeatherReport</a>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarText">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link nav-items" href="#">Kakinada, Andhra Pradesh 28°C <i class="fa-solid fa-cloud-sun" style="color: #97a5af;"></i></a>
+        </li>
+      </ul>
+      <form class="d-flex search-bar">
+        <input class="form-control" type="search" placeholder="Weather in your city" aria-label="Search">
+      </form>
+    </div>
+  </nav>
+</div>
+
+<!-- Main Content Section -->
+<div class="bg-container container-fluid">
+  <h1 class="main-heading">Weather Report</h1>
+  <p class="description">Enter a city name to get the current weather information.</p>
+
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10">
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="weatherForm" (ngSubmit)="getWeather()">
+              <input formControlName="city" class="form-control search-button mb-2" placeholder="Enter city name" />
+              <button class="btn btn-primary mb-3" type="submit" [disabled]="weatherForm.invalid">Get Weather</button>
+            </form>
+
+            <div *ngIf="errorMsg" class="alert alert-danger mt-3">{{ errorMsg }}</div>
+
+            <div *ngIf="weatherData" class="card mt-4">
+              <div class="card-body output">
+                <h3>{{ weatherData.name }}, {{ weatherData.sys.country }}</h3>
+                <p><strong>Temperature:</strong> {{ weatherData.main.temp }}°C</p>
+                <p><strong>Weather:</strong> {{ weatherData.weather[0].description }}</p>
+                <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
+                <p><strong>Wind Speed:</strong> {{ weatherData.wind.speed }} m/s</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer-section text-center text-white mt-auto">
+  <div class="container py-3">
+    <section class="mb-3">
+      <a class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#"><i class="fab fa-facebook-f"></i></a>
+      <a class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#"><i class="fab fa-twitter"></i></a>
+      <a class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#"><i class="fab fa-google"></i></a>
+      <a class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#"><i class="fab fa-instagram"></i></a>
+      <a class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#"><i class="fab fa-github"></i></a>
+    </section>
+
+    <div class="text-light small m-2">
+      © 2020 Copyright:
+      <a class="text-white text-decoration-none" href="https://WeatherReport.com/">Weather Report</a>
+    </div>
+  </div>
+</footer>
+<!-- End of Footer Section -->
+
+<!-- Add Bootstrap and FontAwesome scripts -->
